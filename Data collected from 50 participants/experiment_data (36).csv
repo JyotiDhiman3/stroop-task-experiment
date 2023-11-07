@@ -1,0 +1,47 @@
+"rt","stimulus","response","trial_type","trial_index","time_elapsed","internal_node_id","task","color","text","condition","correct_response","correct"
+"608","Welcome to the experiment! Press any key to begin"," ","html-keyboard-response","0","610","0.0-0.0","","","","","",""
+"849","
+            <p>In this experiment, a word will appear in the center of the screen.</p>
+            <p>When the word appears respond with the <strong>color</strong>
+            in which the word is printed as quickly as you can.</p><p> 
+            Press <strong>r</strong> for red, <strong>g</strong> for green, 
+            <strong>y</strong> for yellow and <strong>b</strong> for blue.</p>
+            <p>Press any key to begin.</p>
+            "," ","html-keyboard-response","1","1461","0.0-1.0","","","","","",""
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","2","4226","0.0-2.0-0.0","fixation","","","","",""
+"1190","
+                    <p style=""color:yellow"">
+                    yellow</p>","y","html-keyboard-response","3","5417","0.0-2.0-1.0","response","yellow","yellow","congruent","y","true"
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","4","7169","0.0-2.0-0.1","fixation","","","","",""
+"810","
+                    <p style=""color:red"">
+                    red</p>","r","html-keyboard-response","5","7980","0.0-2.0-1.1","response","red","red","congruent","r","true"
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","6","9737","0.0-2.0-0.2","fixation","","","","",""
+"1987","
+                    <p style=""color:blue"">
+                    yellow</p>","y","html-keyboard-response","7","11724","0.0-2.0-1.2","response","blue","yellow","incongruent","b","false"
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","8","12478","0.0-2.0-0.3","fixation","","","","",""
+"792","
+                    <p style=""color:blue"">
+                    blue</p>","b","html-keyboard-response","9","13270","0.0-2.0-1.3","response","blue","blue","congruent","b","true"
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","10","13775","0.0-2.0-0.4","fixation","","","","",""
+"974","
+                    <p style=""color:green"">
+                    red</p>","r","html-keyboard-response","11","14749","0.0-2.0-1.4","response","green","red","incongruent","g","false"
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","12","15762","0.0-2.0-0.5","fixation","","","","",""
+"1482","
+                    <p style=""color:red"">
+                    green</p>","r","html-keyboard-response","13","17245","0.0-2.0-1.5","response","red","green","incongruent","r","true"
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","14","17757","0.0-2.0-0.6","fixation","","","","",""
+"1272","
+                    <p style=""color:yellow"">
+                    blue</p>","y","html-keyboard-response","15","19029","0.0-2.0-1.6","response","yellow","blue","incongruent","y","true"
+"null","<div style=""font-size:60px;"">+</div>","null","html-keyboard-response","16","20530","0.0-2.0-0.7","fixation","","","","",""
+"1064","
+                    <p style=""color:green"">
+                    green</p>","g","html-keyboard-response","17","21594","0.0-2.0-1.7","response","green","green","congruent","g","true"
+"5703","<p>You responded correctly on 75% of the trials.</p>
+                <p>Your average response time was 1102ms.</p>
+                <p>Press any key to complete the experiment</p>
+                <p>and csv file of your experiment</p>
+                <p>data will automatically get downloaded. Thank you!!</p>"," ","html-keyboard-response","18","27298","0.0-3.0","","","","","",""
