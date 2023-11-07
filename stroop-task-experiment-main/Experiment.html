@@ -5,18 +5,56 @@
         <script src="jspsych/jspsych.js"></script>
         <script src="jspsych/plugin-html-keyboard-response.js"></script>
         <link rel="stylesheet" href="jspsych/jspsych.css" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>body{background-color: lightgray;}</style>
     </head>
-    <body></body>
+    <body>
+        <canvas id="myChart" width="400" height="300"></canvas>
+    </body>
     <script>
-        //initialize jsPsych
-        const jsPsych = initJsPsych({
-        //display data at end of experiment
-        on_finish: function() {
-            jsPsych.data.displayData();
-        },
-        });
+    // Initialize jsPsych
+    const jsPsych = initJsPsych({
+        on_finish: function () {
+            var data = jsPsych.data.get().csv();
 
+        // Create a Blob object with the CSV data
+        var blob = new Blob([data], { type: 'text/csv' });
+
+        // Create a download link for the CSV file
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'experiment_data.csv'; // Set the desired file name
+
+        // Trigger a click event to download the file
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        window.URL.revokeObjectURL(url);
+
+        // Or use .csv() for CSV export
+        // You can save this data to a file or send it to a server for analysis.
+        console.log(data);
+
+        var dataValues = jsPsych.data.get().values();
+
+        var congruentData = dataValues.filter((trial) => trial.condition === "congruent");
+        var incongruentData = dataValues.filter((trial) => trial.condition === "incongruent");
+
+        var congruentAccuracy = (congruentData.filter((trial) => trial.correct).length / congruentData.length) * 100;
+        var incongruentAccuracy = (incongruentData.filter((trial) => trial.correct).length / incongruentData.length) * 100;
+
+        var congruentRTs = congruentData.map((trial) => trial.rt);
+        var incongruentRTs = incongruentData.map((trial) => trial.rt);
+
+        var avgCongruentRT = congruentRTs.reduce((a, b) => a + b, 0) / congruentRTs.length;
+        var avgIncongruentRT = incongruentRTs.reduce((a, b) => a + b, 0) / incongruentRTs.length;
+        
+    },
+});
+        
         //create timeline
         var timeline = [];
 
@@ -34,8 +72,9 @@
             <p>In this experiment, a word will appear in the center of the screen.</p>
             <p>When the word appears respond with the <strong>color</strong>
             in which the word is printed as quickly as you can.</p><p> 
-            Press <strong>R</strong> for red, <strong>G</strong> for green, 
-            <strong>Y</strong> for yellow and <strong>B</strong> for blue.</p>
+            Press <strong>r</strong> for red, <strong>g</strong> for green, 
+            <strong>y</strong> for yellow, <strong>b</strong> for blue,
+            <strong>p</strong> for purple and <strong>o</strong> for orange.</p>
             <p>Press any key to begin.</p>
             `,
             post_trial_gap: 2000,
@@ -61,10 +100,14 @@
             { color: "red", text: "red", condition: "congruent", correct_response: "r"  },
             { color: "yellow", text: "yellow", condition: "congruent", correct_response: "y"  },
             { color: "green", text: "green", condition: "congruent", correct_response: "g"  },
+            { color: "purple", text: "purple", condition: "congruent", correct_response: "p"  },
+            { color: "orange", text: "orange", condition: "congruent", correct_response: "o"  },
             { color: "blue", text: "yellow", condition: "incongruent", correct_response: "b"  },
             { color: "red", text: "green", condition: "incongruent", correct_response: "r"  },
             { color: "yellow", text: "blue", condition: "incongruent", correct_response: "y"  },
-            { color: "green", text: "red", condition: "incongruent", correct_response: "g"  }
+            { color: "green", text: "red", condition: "incongruent", correct_response: "g"  },
+            { color: "purple", text: "green", condition: "incongruent", correct_response: "p"  },
+            { color: "orange", text: "blue", condition: "incongruent", correct_response: "o"  },
         ];
 
         //define test trial
@@ -76,7 +119,7 @@
                     ${jsPsych.timelineVariable('text')}</p>`;
                 return html;
             },
-            choices: ["r", "g", "b", "y"],
+            choices: ["r", "g", "b", "y", "p", "o"],
             data: {
                 task: 'response',
                 color: jsPsych.timelineVariable('color'),
@@ -114,13 +157,15 @@
 
                 return `<p>You responded correctly on ${accuracy}% of the trials.</p>
                 <p>Your average response time was ${rt}ms.</p>
-                <p>Press any key to complete the experiment. Thank you!!</p>`
+                <p>Press any key to complete the experiment and csv file of your experiment
+                data will automatically get downloaded. Thank you!!</p>`
             }
+
         };
         timeline.push(debrief_block);
 
         //start experiment
         jsPsych.run(timeline);
-
+        
     </script>
 </html>
